@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    DimensionCraft 3D - FINAL PREMIUM WEBSITE (Single Page)
+    ------------------------------------------------------
+    ✔ Modern dark neon design (tech theme)
+    ✔ Particle animated background
+    ✔ Hero + CTA
+    ✔ Gallery section (image placeholders)
+    ✔ Customization form with file upload + pricing estimator
+    ✔ WhatsApp floating button
+    ✔ Instagram/YouTube footer icons
+    ✔ Fully responsive (mobile + desktop)
+    ✔ Easy editable business details in ONE PLACE
+
+    HOW TO USE:
+    1) Save as: index.html
+    2) Open and edit the BUSINESS SETTINGS section (below in <script>)
+    3) Upload to hosting
+  -->
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DimensionCraft 3D | Custom 3D Printing</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===============================
+       GLOBAL STYLES
+    =============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #05070d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .neon-text {
+      background: linear-gradient(90deg, #00ffff, #008cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 14px rgba(0, 255, 255, 0.25);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    /* ===============================
+       PARTICLE BACKGROUND
+    =============================== */
+    #particleCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+      opacity: 0.9;
+    }
+
+    /* ===============================
+       NAVBAR
+    =============================== */
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      background: rgba(5, 7, 13, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.12);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+    }
+
+    .logo {
+      font-family: "Orbitron", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #00ffff;
+      text-shadow: 0 0 14px rgba(0, 255, 255, 0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      opacity: 0.85;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: #00ffff;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: #00ffff;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      padding: 18px;
+      border-top: 1px solid rgba(0, 255, 255, 0.12);
+    }
+
+    .mobile-menu a {
+      font-size: 1rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    /* ===============================
+       HERO SECTION
+    =============================== */
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 75px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 3.1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    .hero-buttons {
+      margin-top: 26px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #00ffff, #008cff);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0px 0px 22px rgba(0, 255, 255, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(0, 255, 255, 0.45);
+      color: #00ffff;
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 255, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      padding: 25px;
+      box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.08);
+    }
+
+    .hero-card h3 {
+      font-family: "Orbitron", sans-serif;
+      color: #00ffff;
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0.9;
+    }
+
+    .hero-card ul li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00ffff;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+    }
+
+    /* ===============================
+       SECTION GENERAL
+    =============================== */
+    section {
+      padding: 95px 0;
+    }
+
+    .section-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin-bottom: 35px;
+      line-height: 1.6;
+      max-width: 750px;
+    }
+
+    /* ===============================
+       GALLERY
+    =============================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-card {
+      overflow: hidden;
+      border-radius: 16px;
+      transition: 0.3s ease;
+      border: 1px solid rgba(0, 255, 255, 0.12);
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.2);
+      border-color: rgba(0, 255, 255, 0.35);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.95);
+    }
+
+    .gallery-info {
+      padding: 15px;
+    }
+
+    .gallery-info h4 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #00ffff;
+    }
+
+    .gallery-info p {
+      font-size: 0.9rem;
+      opacity: 0.78;
+      line-height: 1.4;
+    }
+
+    /* ===============================
+       FORM + ESTIMATOR
+    =============================== */
+    .form-box {
+      padding: 25px;
+      box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.07);
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.45);
+      color: white;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(0, 255, 255, 0.6);
+      box-shadow: 0px 0px 14px rgba(0, 255, 255, 0.2);
+    }
+
+    textarea {
+      resize: none;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .upload-preview {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      opacity: 0.75;
+      color: #00ffff;
+    }
+
+    .estimate-box {
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 255, 255, 0.18);
+      background: rgba(0, 255, 255, 0.05);
+      margin-top: 10px;
+    }
+
+    .estimate-box h4 {
+      font-family: "Orbitron", sans-serif;
+      color: #00ffff;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .estimate-box p {
+      opacity: 0.85;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .price {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+    }
+
+    .success-msg {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(0, 255, 255, 0.12);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      display: none;
+      font-size: 0.95rem;
+      color: #00ffff;
+    }
+
+    /* ===============================
+       WHATSAPP FLOAT BUTTON
+    =============================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      background: linear-gradient(90deg, #00ffff, #008cff);
+      color: #000;
+      padding: 14px 18px;
+      border-radius: 50px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0px 0px 22px rgba(0, 255, 255, 0.35);
+      transition: 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 0px 28px rgba(0, 255, 255, 0.55);
+    }
+
+    /* ===============================
+       FOOTER
+    =============================== */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(0, 255, 255, 0.12);
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .footer-icons {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0px 0px 16px rgba(0, 255, 255, 0.35);
+      border-color: rgba(0, 255, 255, 0.6);
+    }
+
+    /* ===============================
+       REVEAL ANIMATION
+    =============================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    /* ===============================
+       RESPONSIVE
+    =============================== */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .mobile-menu.show {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 2.05rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .whatsapp-float {
+        font-size: 0.95rem;
+        padding: 12px 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Particle Background -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- WhatsApp Floating Button (AUTO SET FROM SETTINGS) -->
+  <a class="whatsapp-float" id="whatsappBtn" target="_blank">
+    💬 WhatsApp Order
+  </a>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="container nav-wrapper">
+      <div class="logo" id="brandName">DimensionCraft 3D</div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#customize">Customize</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="menu-btn" id="menuBtn">☰</div>
+    </div>
+
+    <div class="container mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#customize">Customize</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home">
+    <div class="container hero reveal">
+      <div>
+        <h1 id="heroTitle">
+          High Precision <span class="neon-text">Custom 3D Printing</span> for Every Idea
+        </h1>
+
+        <p id="heroSubtitle">
+          DimensionCraft 3D provides premium 3D printing services for prototypes, custom parts,
+          miniatures, gifts, and engineering models.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#customize"><button class="btn btn-primary">Start Your Project</button></a>
+          <a href="#gallery"><button class="btn btn-outline">View Gallery</button></a>
+        </div>
+      </div>
+
+      <div class="hero-card glass">
+        <h3>Our Printing Capabilities</h3>
+        <ul>
+          <li><span class="dot"></span> Prototypes & Engineering Parts</li>
+          <li><span class="dot"></span> Resin Miniatures & Figurines</li>
+          <li><span class="dot"></span> Custom Gifts & Branding Models</li>
+          <li><span class="dot"></span> Fast Production & Delivery</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container reveal">
+      <h2 class="section-title">Project Gallery</h2>
+      <p class="section-subtitle">
+        Replace these placeholder images with your real product photos or 3D renders.
+        Recommended size: 1200x800px.
+      </p>
+
+      <div class="gallery-grid">
+
+        <div class="gallery-card glass">
+          <img src="https://via.placeholder.com/1200x800.png?text=Prototype+Model" alt="Prototype Model">
+          <div class="gallery-info">
+            <h4>Prototype Model</h4>
+            <p>High precision prototype for testing and product validation.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card glass">
+          <img src="https://via.placeholder.com/1200x800.png?text=Mechanical+Part" alt="Mechanical Part">
+          <div class="gallery-info">
+            <h4>Mechanical Part</h4>
+            <p>Functional engineering parts printed using durable ABS material.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card glass">
+          <img src="https://via.placeholder.com/1200x800.png?text=Resin+Miniature" alt="Resin Miniature">
+          <div class="gallery-info">
+            <h4>Resin Miniature</h4>
+            <p>Ultra-detailed resin print with smooth finishing and sharp edges.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card glass">
+          <img src="https://via.placeholder.com/1200x800.png?text=Architecture+Model" alt="Architecture Model">
+          <div class="gallery-info">
+            <h4>Architecture Model</h4>
+            <p>Scale building models for presentations and real estate projects.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card glass">
+          <img src="https://via.placeholder.com/1200x800.png?text=Custom+Keychain" alt="Custom Keychain">
+          <div class="gallery-info">
+            <h4>Custom Keychain</h4>
+            <p>Branding keychains, logos and personalized gift printing.</p>
+          </div>
+        </div>
+
+        <div class="gallery-card glass">
+          <img src="https://via.placeholder.com/1200x800.png?text=Creative+Decor" alt="Creative Decor">
+          <div class="gallery-info">
+            <h4>Creative Decor</h4>
+            <p>Home decor and custom artistic designs with premium finish.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMIZE FORM -->
+  <section id="customize">
+    <div class="container reveal">
+      <h2 class="section-title">Customize Your Print</h2>
+      <p class="section-subtitle">
+        Upload your 3D file and get an estimated cost instantly.
+        We will confirm final pricing after checking print complexity.
+      </p>
+
+      <div class="form-box glass">
+
+        <!-- FORM ACTION WILL BE AUTO UPDATED FROM SETTINGS -->
+        <form id="printForm" method="POST" enctype="multipart/form-data">
+
+          <!-- FormSubmit settings -->
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="New 3D Printing Request - DimensionCraft 3D">
+          <input type="hidden" name="_template" value="table">
+
+          <div>
+            <label for="customerName">Your Name</label>
+            <input type="text" id="customerName" name="Name" placeholder="Enter your name" required>
+          </div>
+
+          <div>
+            <label for="customerPhone">Phone / WhatsApp Number</label>
+            <input type="text" id="customerPhone" name="Phone" placeholder="Example: +91 9876543210" required>
+          </div>
+
+          <div>
+            <label for="fileUpload">Upload 3D File (.STL, .OBJ)</label>
+            <input type="file" id="fileUpload" name="3D File" accept=".stl,.obj" required />
+            <div class="upload-preview" id="fileNamePreview">No file selected.</div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="material">Select Material</label>
+              <select id="material" name="Material" required>
+                <option value="">-- Choose Material --</option>
+                <option value="PLA">PLA</option>
+                <option value="ABS">ABS</option>
+                <option value="Resin">Resin</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="Quantity" value="1" min="1" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="length">Length (cm)</label>
+              <input type="number" id="length" name="Length (cm)" placeholder="Example: 10" min="1" required>
+            </div>
+
+            <div>
+              <label for="width">Width (cm)</label>
+              <input type="number" id="width" name="Width (cm)" placeholder="Example: 5" min="1" required>
+            </div>
+          </div>
+
+          <div>
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" name="Height (cm)" placeholder="Example: 4" min="1" required>
+          </div>
+
+          <div>
+            <label for="notes">Notes / Requirements</label>
+            <textarea id="notes" name="Notes" placeholder="Example: Color preference, infill %, strength needs, finishing, etc."></textarea>
+          </div>
+
+          <!-- Price Estimator -->
+          <div class="estimate-box">
+            <h4>Instant Price Estimate</h4>
+            <p>
+              This is an estimated cost based on size and material.
+              Final pricing depends on complexity, infill, supports, and finishing.
+            </p>
+            <div class="price" id="priceDisplay">₹0</div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit Request</button>
+
+          <div class="success-msg" id="successMsg">
+            ✅ Request submitted successfully! We will contact you shortly.
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container reveal">
+      <p>© <span id="year"></span> <span id="footerBrandName">DimensionCraft 3D</span>. All Rights Reserved.</p>
+
+      <!-- Contact Info Auto Filled -->
+      <p id="contactInfo" style="margin-top:10px; opacity:0.85;"></p>
+
+      <div class="footer-icons">
+
+        <!-- Instagram (AUTO SET FROM SETTINGS) -->
+        <a class="social-icon" id="instagramLink" target="_blank" title="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M7 2H17C20.3137 2 23 4.68629 23 8V16C23 19.3137 20.3137 22 17 22H7C3.68629 22 1 19.3137 1 16V8C1 4.68629 3.68629 2 7 2Z"
+              stroke="#00ffff" stroke-width="2"/>
+            <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z"
+              stroke="#00ffff" stroke-width="2"/>
+            <path d="M18 6.5H18.01" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </a>
+
+        <!-- YouTube (AUTO SET FROM SETTINGS) -->
+        <a class="social-icon" id="youtubeLink" target="_blank" title="YouTube">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M22.54 6.42C22.3 5.54 21.6 4.85 20.72 4.61C19.11 4.17 12 4.17 12 4.17C12 4.17 4.89 4.17 3.28 4.61C2.4 4.85 1.7 5.54 1.46 6.42C1.02 8.03 1.02 12 1.02 12C1.02 12 1.02 15.97 1.46 17.58C1.7 18.46 2.4 19.15 3.28 19.39C4.89 19.83 12 19.83 12 19.83C12 19.83 19.11 19.83 20.72 19.39C21.6 19.15 22.3 18.46 22.54 17.58C22.98 15.97 22.98 12 22.98 12C22.98 12 22.98 8.03 22.54 6.42Z"
+              stroke="#00ffff" stroke-width="2"/>
+            <path d="M10 15L15 12L10 9V15Z" fill="#00ffff"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =====================================================
+       🔥 BUSINESS SETTINGS (EDIT ONLY THIS SECTION LATER)
+       ===================================================== */
+    const BUSINESS_INFO = {
+      brandName: "DimensionCraft 3D",
+
+      // Your phone number (for display)
+      mobile: "+91 9876543210",
+
+      // Your email (for display + form submission)
+      gmail: "dimensioncraft3d@gmail.com",
+
+      // Social Links
+      instagram: "https://instagram.com/",
+      youtube: "https://youtube.com/",
+
+      // WhatsApp number in international format (no spaces)
+      whatsappNumber: "919876543210",
+
+      // WhatsApp message auto-filled
+      whatsappMessage: "Hi DimensionCraft 3D! I want a custom 3D print. Please guide me.",
+
+      // FormSubmit Email Service (works without backend)
+      // Leave it same, only update email above.
+      enableFormSubmit: true,
+
+      // Pricing Settings (you can adjust rates later)
+      pricing: {
+        baseFee: 150,
+        minimumPrice: 250,
+        plaRate: 0.8,
+        absRate: 1.1,
+        resinRate: 2.0
+      }
+    };
+
+    /* =====================================================
+       AUTO APPLY BUSINESS DETAILS
+       ===================================================== */
+    const whatsappBtn = document.getElementById("whatsappBtn");
+    const instagramLink = document.getElementById("instagramLink");
+    const youtubeLink = document.getElementById("youtubeLink");
+    const contactInfo = document.getElementById("contactInfo");
+    const brandName = document.getElementById("brandName");
+    const footerBrandName = document.getElementById("footerBrandName");
+    const printForm = document.getElementById("printForm");
+
+    brandName.textContent = BUSINESS_INFO.brandName;
+    footerBrandName.textContent = BUSINESS_INFO.brandName;
+
+    const encodedMessage = encodeURIComponent(BUSINESS_INFO.whatsappMessage);
+    whatsappBtn.href = `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodedMessage}`;
+
+    instagramLink.href = BUSINESS_INFO.instagram;
+    youtubeLink.href = BUSINESS_INFO.youtube;
+
+    contactInfo.innerHTML = `📞 <strong>${BUSINESS_INFO.mobile}</strong> | ✉️ <strong>${BUSINESS_INFO.gmail}</strong>`;
+
+    // Auto set FormSubmit endpoint
+    if (BUSINESS_INFO.enableFormSubmit) {
+      printForm.action = `https://formsubmit.co/${BUSINESS_INFO.gmail}`;
+    }
+
+    /* =====================================================
+       MOBILE MENU TOGGLE
+       ===================================================== */
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("show");
+    });
+
+    mobileMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("show");
+      });
+    });
+
+    /* =====================================================
+       AUTO YEAR
+       ===================================================== */
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* =====================================================
+       FILE UPLOAD PREVIEW
+       ===================================================== */
+    const fileUpload = document.getElementById("fileUpload");
+    const fileNamePreview = document.getElementById("fileNamePreview");
+
+    fileUpload.addEventListener("change", () => {
+      if (fileUpload.files.length > 0) {
+        fileNamePreview.textContent = "Selected File: " + fileUpload.files[0].name;
+      } else {
+        fileNamePreview.textContent = "No file selected.";
+      }
+    });
+
+    /* =====================================================
+       PRICE ESTIMATOR LOGIC
+       ===================================================== */
+    const materialSelect = document.getElementById("material");
+    const lengthInput = document.getElementById("length");
+    const widthInput = document.getElementById("width");
+    const heightInput = document.getElementById("height");
+    const qtyInput = document.getElementById("quantity");
+    const priceDisplay = document.getElementById("priceDisplay");
+
+    function calculatePrice() {
+      const material = materialSelect.value;
+      const length = parseFloat(lengthInput.value) || 0;
+      const width = parseFloat(widthInput.value) || 0;
+      const height = parseFloat(heightInput.value) || 0;
+      const qty = parseInt(qtyInput.value) || 1;
+
+      const volume = length * width * height;
+
+      let rate = 0;
+      if (material === "PLA") rate = BUSINESS_INFO.pricing.plaRate;
+      if (material === "ABS") rate = BUSINESS_INFO.pricing.absRate;
+      if (material === "Resin") rate = BUSINESS_INFO.pricing.resinRate;
+
+      let price = (volume * rate) + BUSINESS_INFO.pricing.baseFee;
+      price = price * qty;
+
+      if (price < BUSINESS_INFO.pricing.minimumPrice) {
+        price = BUSINESS_INFO.pricing.minimumPrice;
+      }
+
+      priceDisplay.textContent = "₹" + Math.round(price);
+    }
+
+    [materialSelect, lengthInput, widthInput, heightInput, qtyInput].forEach(el => {
+      el.addEventListener("input", calculatePrice);
+    });
+
+    /* =====================================================
+       FORM SUBMISSION MESSAGE
+       ===================================================== */
+    const successMsg = document.getElementById("successMsg");
+
+    printForm.addEventListener("submit", () => {
+      successMsg.style.display = "block";
+      setTimeout(() => {
+        successMsg.style.display = "none";
+      }, 5000);
+    });
+
+    /* =====================================================
+       SCROLL REVEAL
+       ===================================================== */
+    function revealElements() {
+      const reveals = document.querySelectorAll(".reveal");
+      const windowHeight = window.innerHeight;
+
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealElements);
+    window.addEventListener("load", revealElements);
+
+    /* =====================================================
+       PARTICLE BACKGROUND ANIMATION
+       ===================================================== */
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    let particlesArray = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      initParticles();
+    });
+
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = Math.random() * 0.6 - 0.3;
+        this.speedY = Math.random() * 0.6 - 0.3;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0,255,255,0.55)";
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particlesArray = [];
+      const particleCount = Math.floor((canvas.width * canvas.height) / 12000);
+
+      for (let i = 0; i < particleCount; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          const dx = particlesArray[a].x - particlesArray[b].x;
+          const dy = particlesArray[a].y - particlesArray[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            ctx.strokeStyle = "rgba(0,255,255,0.08)";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particlesArray.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      connectParticles();
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+  </script>
+
+</body>
+</html>
